@@ -1,0 +1,418 @@
+
+JAVA:
+======
+
+LANGUAGE:
+========
+
+		ENGLISH-->COMMUNICATION WITH HUMAN
+		
+		
+PROGRAMMING LANGUAGE:
+=====================		
+
+
+			COMMUNICATION WITH MACHINES
+
+
+				POP 						OOP
+	B,C,BCPL,COBOL,Photon.....			Java,Python,C++,.net,.....
+
+							1)Performance 			inheritance,polymorphisam
+							2)security				encapsulation,abstraction
+
+
+Why Java:
+=========
+
+1996 JDK 1.0			1993
+
+2023  20
+
+		Sun micro system  ->oracle corporation --->James gosling
+
+
+https://www.javatpoint.com/javafx-how-to-install-java
+
+
+					1)Platform Independent 				.net -->microsoft 
+					
+					2)Garbage Collection   -->garbage collector
+
+
+welcome to java 
+
+26-->english
+
+53-->keywords  51 keywords--lower case 
+
+
+
+
+Welcome.java
+
+class Welcome
+{
+
+public static void main(String args[])     //JDK-->JRE-->JVM-->binary core /byte code 0's 1's
+{
+
+System.out.println("welcome to java");		//source code -->byte code translation -->translator
+
+}									//.java--->.class compailation--->compiler
+	
+
+}
+
+
+WORA
+
+Identifiers:
+--------------
+any name in java will call it as identifier
+
+
+classname,methodname,inerface,obj,.....
+
+	
+	class Welcome123
+	
+		Welcome@123
+		
+		123hello
+
+
+		a-z
+		A-Z
+		0-9
+		$
+		_
+
+Eclipse :
+========= IDE  eclipse,myeclipse,intellji,vscode,netbeans
+
+eclipse
+
+
+https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2023-03/R/eclipse-inst-jre-win64.exe
+
+Variables:
+==========
+
+			sandeeptrainer 787878788778
+
+
+syntax:
+
+			datatype varname=value;					
+
+				
+				datatype varname;//declaration
+				
+				varname=value;//intialization
+
+			eid,phoneno,aadhar,bankacnt.....numeric data 
+			
+			salary,marks,weight ....decimal
+			
+			name,fname,addres......	string
+
+			true,false--->boolean
+
+
+
+			PDT 				NPDT
+			
+		8  PDT				non-premitive DT string,array,class,....
+			
+			
+	byte		1 byte(8 bits)	-128 to 127
+	short		2 bytes			-32768 to 32767
+	int			4 bytesbytes  -2147483648 to 2147483647
+	long		8 bytes			-2 power 64 to 2power 64 -1			numeric data  			 age=32;  contact:7/8/9
+			
+
+	float 		4 bytes				
+	double		8 bytes								float data= 23.454234234236891f;/
+	
+	
+	char		2 bytes			ASCII				'M','F'			
+	boolean		1 bit								true-1,false-0
+		
+
+		A-65 -->english
+		
+		a-97
+
+
+
+2 types  of variables:
+
+			local 	:inside the method	
+			
+			global  outside  the method 
+
+
+Instance and static:
+===================
+
+		global -->instance/non static ,static
+
+
+syntax:
+========
+		static keyword 
+		with out static keyword 
+
+memory
+========
+		static variables/properties will get  memory  space only once at the time of class loading into JVM
+		instance variables will get memory for every object creation
+
+			class:collection of data members and member functions
+			
+			object:instance of a class
+			A
+					classname objname=new classname();//constructor
+						
+					A obj=new A();//instance properties will get memory
+
+Access
+======
+		static properties can be accessed by using classname 
+		instance properties can  be accessed by using objname
+	
+Usage
+=====
+		static orgname,school,clg,countryname....
+		instance eid,aadhar,pan,contact......
+
+
+methods
+
+
+
+
+
+	public static void main(String[] args) {
+
+
+	optional									camelcase 
+			
+	accessmodifier  static/instance returntype methodname(int a,float b)
+	{
+	
+	
+	}
+	int a=90;
+	int b=2;
+	
+	public static int  addOfTwo(int a ,int b)
+	{
+			return a+b;
+	}
+	public  void  subOfTwo(int a ,int b)
+	{
+			System.out.println(a-b);
+	}
+	public  int  mulOfTwo()
+	{
+	return a*b;
+	}
+	public  void  divOfTwo()
+	{
+	System.out.println(a/b);
+	}
+
+package:
+=========
+		folder-->package 
+
+
+predefined 
+	6000+ -->
+	
+	import 
+
+userdefined
+	
+		package com.ericsson.virtual;
+		import...
+		
+scanner
+
+	String id = "111";
+		wrapper classes
+		int a = Integer.parseInt(id);
+		int b = 23;
+		System.out.println("add of two numbers : " + (a + b));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
