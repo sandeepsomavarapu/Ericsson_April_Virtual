@@ -354,6 +354,142 @@ polymorphisam,access modifiers,final,this,super,encapsulation,constructor
 
 
 
+polymorphisam:
+===============
+
+many forms 
+
+
+	Method Overloading:method name is same and signature different 
+	
+												no of params
+												order of params
+												type of params 
+	
+	
+	
+public class MethodOverloadingEx {
+	public void add(float a, float b) {
+		System.out.println("add of two float's :" + (a + b));
+	}
+
+	public void add(int a, int b) {
+		System.out.println("add of two int's :" + (a + b));
+	}
+
+	public void add(int a, int b, int c) {
+		System.out.println("add of three int's :" + (a + b + c));
+	}
+
+	public void add(int a, float b) {
+		System.out.println("add of int ,float  :" + (a + b));
+	}
+
+	public void add(float a, int b) {
+		System.out.println("add of float,int  :" + (a + b));
+	}
+
+	public static void main(String[] args) {
+		MethodOverloadingEx obj = new MethodOverloadingEx();
+
+		obj.add(11, 12);
+		obj.add(11, 12, 13);
+		obj.add(23.4f, 34.2f);
+		obj.add(23, 34.5f);
+	}
+
+}
+Ex2
+
+
+
+public class MethodOverloadingEx {
+	public void add(float a, float b) {
+		System.out.println("add of two float's :" + (a + b));
+	}
+
+//	public void add(int a, int b) {
+//		System.out.println("add of two int's :" + (a + b));
+//	}
+
+	public void add(int a, int b, int c) {
+		System.out.println("add of three int's :" + (a + b + c));
+	}
+
+
+
+	public static void main(String[] args) {
+		MethodOverloadingEx obj = new MethodOverloadingEx();
+
+		obj.add(11, 12);
+		obj.add(11, 12, 13);
+		obj.add(23.4f, 34.2f);
+		obj.add(23, 34.5f);
+		obj.add('a','b');
+	}
+
+}
+
+	
+	Method Overriding 
+=======================
+	A
+	100 -->99-1
+	
+	B extends  A
+
+	overridng :methodname is same implementation is different
+
+
+
+AccessModifiers:
+================
+
+	public 			any where
+	private			only inside the class
+	protected		package level+outside package only in the child classes
+	default			package level scope
+
+
+
+Constructor:
+===========
+			special member function				boolean=false
+			
+			1)intialize the object 
+			2)intialize default values for instance variables
+
+A
+		classname objname=new constructor();
+			A a=new A();
+			
+			
+			
+			
+	public void add(int a, int b) {
+		
+	}
+			
+	public A(int a, int b) {
+		
+	}
+			
+this super:
+===========
+		this is used represent current class properties(variable,method,object,constructor)
+		
+		
+		super is used represent parent class properties(variable,method,constructor)
+		
+
+
+
+
+
+
+			
+
+
 exceptions/file io/string
 
 
