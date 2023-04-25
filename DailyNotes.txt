@@ -15,8 +15,8 @@ PROGRAMMING LANGUAGE:
 			COMMUNICATION WITH MACHINES
 
 
-				POP 						OOP
-	B,C,BCPL,COBOL,Photon.....			Java,Python,C++,.net,.....
+				POP 								OOP
+	B,C,BCPL,COBOL,Photon.....					Java,Python,C++,.net,.....
 
 							1)Performance 			inheritance,polymorphisam
 							2)security				encapsulation,abstraction
@@ -68,7 +68,7 @@ System.out.println("welcome to java");		//source code -->byte code translation -
 WORA
 
 Identifiers:
---------------
+------------
 any name in java will call it as identifier
 
 
@@ -88,8 +88,8 @@ classname,methodname,inerface,obj,.....
 		$
 		_
 
-Eclipse :
-========= IDE  eclipse,myeclipse,intellji,vscode,netbeans
+Eclipse:
+========IDE  eclipse,myeclipse,intellji,vscode,netbeans
 
 eclipse
 
@@ -231,7 +231,7 @@ package:
 
 predefined 
 	6000+ -->
-	
+	https://docs.oracle.com/javase/8/docs/api/
 	import 
 
 userdefined
@@ -248,69 +248,118 @@ scanner
 		System.out.println("add of two numbers : " + (a + b));
 
 
+By	default package for every java file java.lang.*
+
+
+
+Flow Control:
+============
+
+			if,else,while,dowhle,switch,for....
+
+
+
+OOPS Features:
+=============
+
+1)Inheritance
+2)Polymorphisam			Performance
+
+3)Abstraction
+4)Encapsulation			Security
+
+
+
+1)Inheritance:
+===============extends,implements
+
+	the process of getting features from one class to another class
+
+		Code Reusability
+
+		class A
+		{
+		
+		//10 methods
+		
+		
+		}
+
+		class B extends A
+		{
+
+		//15 methods
+
+		}
+
+Abstraction:
+============
+
+	ATM--->w,d,mini,pinchange.....
+
+	hiding the internal logic and showcasing functionalties
+
+
+		abstract class
+		interface 
+
+
+abstract methods / concrete method:
+================================
+
+
+		public void m1()//non-abstract or concrete method
+		{
+		
+		}
+		public abstract void m2();//non-abstract or concrete method
+		
+
+		class			:collection only concrete methods
+		abstract class	:combination of both abstract and concrete methods  0-100%
+		interface 		:collection of only abstract methods				100%
+
+
+Multiple Inheritance:
+======================
+
+	MI Not supported by java through classes
+	MI  supported by java through interfaces
+
+
+interface Parent				interface Parent1
+{								{
+
+	m1();							m1();
+	
+
+}								}
+
+class Child implements Parent,Parent1
+
+{
+
+Child child=new Child();
+		child.m1();
+
+
+}
+m1()
+{
+
+}
+
+
+polymorphisam,access modifiers,final,this,super,encapsulation,constructor
+
+
+
+exceptions/file io/string
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+collections
 
 
 
