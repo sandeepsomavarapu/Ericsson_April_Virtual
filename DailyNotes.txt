@@ -249,8 +249,10 @@ scanner
 
 
 By	default package for every java file java.lang.*
+By	default parent class  for every java class java.lang.Object    javap java.lang.Object
 
-
+25-05-2024:Day-2
+===================
 
 Flow Control:
 ============
@@ -291,6 +293,7 @@ OOPS Features:
 		//15 methods
 
 		}
+		single,multi,hybrid,hirarchie,multiple 
 
 Abstraction:
 ============
@@ -312,14 +315,16 @@ abstract methods / concrete method:
 		{
 		
 		}
-		public abstract void m2();//non-abstract or concrete method
+		public abstract void m2();//abstract  method
 		
 
 		class			:collection only concrete methods
 		abstract class	:combination of both abstract and concrete methods  0-100%
 		interface 		:collection of only abstract methods				100%
 
-
+					By default interface methods are public abstract 
+					By default interface variables are public static final 
+					
 Multiple Inheritance:
 ======================
 
@@ -483,19 +488,77 @@ this super:
 		
 
 
+encapsulation:
+==============
 
-
-
+its process of binding the data and corresponding methods together 
 
 			
+			class-->variables and methods
+			
+class Employee
+{
+
+		eid  0
+		ename 6
+		esal  -200
+		eadd				private 
+		
+public methods setters and getters 
+
+}
+imuttable				muttable
+String,			StringBuffer,StringBuilder /arrays   java.lang
 
 
-exceptions/file io/string
+	String :group of  chars 
+			
+			
+			String name="ericsson";//literal 
+			String name1=new String("ericsson");
+			""
+		imuttable 	
+
+	StringBuffer and StringBuilder both are muttable
+	
+		StringBuffer methods are synchronized
+		StringBuilder methods are not synchronized
+	
+
+public void m1()
+{
+												t1,t2,t3
+
+}
+public synchronized void m2()
+{
+											t1,t2,t3					
+
+}
+
+exceptions/file io/string  day-3
 
 
 
 
-collections
+collections,multi threading  day-4
+
+
+
+
+
+concurrent collection,threads
+
+
+
+
+java8 features 
+
+
+
+case study 
+
+
 
 
 
