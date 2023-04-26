@@ -1,11 +1,35 @@
-package com.ericsson.oops;
+package com.ericsson.fileio;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
 	private int productId;
 	private String productName;
 	private float productPrice;
 	private String productCategory;
+
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
+				+ ", productCategory=" + productCategory + "]";
+	}
+
+	public Product() {
+		System.out.println("default constructor");
+	}
+
+	public Product(int productId, String productName, float productPrice, String productCategory) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productCategory = productCategory;
+	}
 
 	public int getProductId() {
 		return productId;
@@ -20,7 +44,11 @@ public class Product {
 	}
 
 	public void setProductName(String productName) {
-		this.productName = productName;
+		if (this.productId == 0) {
+			System.out.println("First set productid...");
+		} else {
+			this.productName = productName;
+		}
 	}
 
 	public float getProductPrice() {
@@ -28,7 +56,10 @@ public class Product {
 	}
 
 	public void setProductPrice(float productPrice) {
-		this.productPrice = productPrice;
+		if (productPrice > 0)
+			this.productPrice = productPrice;
+		else
+			System.out.println("product can't be -ve or zero");
 	}
 
 	public String getProductCategory() {
