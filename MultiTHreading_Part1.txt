@@ -1,0 +1,93 @@
+
+10000
+
+Multi-Tasking:
+--------------
+
+Mu
+Executing several tasks simultaneously is the concept of multi-tasking.
+There are two types of multi-tasking
+
+1)Process-based multi-tasking
+
+2)Thread Based multitasking
+
+Process Based Multitasking:
+***************************
+
+Executing several tasks simultaneously where each task is a separate independent program
+(process) is called process based multitasking.
+
+ex:
+---
+while typing a program in the editor we can listen audio songs from the same system
+at the same time we can download a file from net,we can browse all these tasks will be executed simultaneously
+and independent of each other, hence it is process-based multi tasking.
+
+Process Based Mutlitasking is best suitable at OS(operating system) level.
+
+
+
+Thread Based MultiTasking:
+**************************
+
+Executing several task simulatneously where each task is a separate independent part of the same program
+is called Thread based multitasking.And each independent part is called a 'thread'.
+
+THread Based Mutlitasking best suitable at programmatic level.
+
+
+
+IMp.Note:
+---------
+
+Whether its is process based or thread based the main objective of multi-tasking is to reduce response time of the system.
+and to improve performance.
+
+
+THe main important application area of multithreading are:
+
+1) To Develop multimedia graphics..
+
+2) TO Develop animations
+
+3) TO Develop video games.
+
+4) TO Develop webservers/application servers...etc
+
+note:
+-----
+90 percent in APi-- java inbuilt support for multithreading..
+
+10 percent for programmer work
+
+
+when compared with old languages developing, multi-threaded application in java is very easy, because java provides inbuilt support for multithreading with rich Api([Thread,Runnable,ThreadGroup...])
+
+
+
+
+
+extends Thread
+
+
+implements Runnable 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

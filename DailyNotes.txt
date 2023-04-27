@@ -486,8 +486,8 @@ this super:
 		
 		super is used represent parent class properties(variable,method,constructor)
 		
-
-
+Day-3
+=======
 encapsulation:
 ==============
 
@@ -554,7 +554,9 @@ Buffered Stream(Reader,Writer,BufferedInputStream,BufferedOutputStream)1024 byte
 Object Stream(ObjectInputStream,ObjectOutputStream) Serialization/de-serialization
 	
 	
+	Serialization-->the process converting object data to byte data 
 	
+	De-Serialization-->the process converting byte data to object data 
 	
 	
 	
@@ -576,20 +578,176 @@ Object Stream(ObjectInputStream,ObjectOutputStream) Serialization/de-serializati
 	//functional interface -->only one abstract method
 	
 
-exceptions
-
-collections,multi threading  day-4
-
-
+exceptions handling:
+===================
+its mechanisam of converting system defined error messages into user friendly error messages .
 
 
+2 problems without exception handling
 
-concurrent collection,threads
+1)system defined error messages
+2)abnormal termination
+
+
+2 advantages with exception handling
+
+1)user friendly error messages
+2)normal termination
+
+try,catch,finally,throw,throws
+
+error
+exception
+
+DAY-4
+										Throwable
+
+
+class EmployeeNotFound extends Throwable/Exception/RuntimeException 
 
 
 
 
-java8 features 
+username	ericsson 
+password	ericsson123
+
+	login success
+	
+	
+	throw Invalidcredentials exception 
+
+
+collections:
+============
+
+
+
+Arrays:
+
+	int eid=123;
+		eid=234;
+
+int eid[]={123,124,125,126,127...}
+
+
+int eids[]=new int[5];
+
+
+		index-0,1,2,3,4
+
+		AIOE
+
+1)arrays can hold only homogeneous data 
+
+2)arrays fixed in size not growable in nature 
+
+3)no utility methods 
+
+
+Collections:
+============
+
+1)collections can hold both homogeneous and heterogeneous data 
+
+2)collections are not  fixed in size and  growable in nature 
+
+3)lots of utility methods 
+
+
+
+								Collection(I)
+								
+				List 				Set 			Queue				
+		
+		AL LL V S				HS  LHS TS         PQ  BQ  .... 
+
+1)duplicates are allowed
+2)insertion order is followed
+
+
+
+
+
+
+											Map
+											
+											
+								HM    		LHM 		  TM	
+									
+							Map--->Key,value -->pair-->Entry		
+									
+									
+									
+
+
+multi threading :
+==================
+
+Multi tasking:
+=============
+Executing several tasks simultaniously 
+
+
+process based multi tasking 
+
+		Executing several tasks simultaniously  where each task seperate independent process
+
+
+Thread based multi tasking			:Multi threading 
+		
+		Executing several tasks simultaniously where each task related to same process
+
+			
+Process:collections of thread
+
+
+2 ways 
+
+	implements Runnable 
+	extending Thread class 
+
+
+
+class MyThread implements  Runnable           FI-->SAM
+{
+
+	run()
+	{
+	
+	
+	}
+	
+	
+	.start()--->run()
+
+
+
+}
+https://www.javamadesoeasy.com/2015/03/thread-states-thread-life-cycle-in-java.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+concurrent collections,concurrent patterns 
+
+
+
+
+java8 features 		Day-5
 
 
 

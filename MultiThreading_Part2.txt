@@ -1,0 +1,289 @@
+Thread:
+-------
+
+Defining a thread:
+******************
+
+we can define a thread  in the following two ways
+
+1) By extending Thread class
+
+2) By implementing Runnable interface
+
+
+By Extending Thread Class:
+**************************
+
+Ex:
+
+class MyThread extends Thread{
+public void run(){
+for(int i=0;i<10;i++){  -----
+			|_Job of Thread.
+sopln("Child THrread")   ----
+}----- executed by child Thread
+}
+}---- Defining a thread.
+class ThreadDemo{
+p s v m(String args[]){
+MyThread t= new MyThread()---Thread instantiation
+t.start(); ---starting ofa Thread
+for(int i=0;i<10;i++){
+sopln("main Thread");
+}--------------executed by main thread
+}
+}
+Discuss UseCases:
+-----------------
+
+case1: Thread Scheduler
+------------------------
+
+--It is the part of the jvm, it is responsible to schedule threads i.e, if multiple threads are waiting to get the chance for execution then in which 
+order threads will be executed is decided  by thread scheduler.
+
+--we cant expect extact alogrithm followed by thread scheduler it is varied from jvm to jvm, hence we cant expect thread execution order and exact output.
+hence situation comes to multithreading there is no gaurarate for exact output.
+
+but we can provide several possible outputs.
+
+The following are various possible outputs for above program:
+----------------------------------------------------------------
+
+1) main thread ...ten times foll0wed by child thread  10 times
+
+2) child thread ---followed by main thread
+
+3) main thread,child thread----followed by ten times.
+
+4) child thread, main thread----so on for ten times.
+
+---- any combinations
+ 
+
+case2: Difference between t.start() and t.run()
+-----------------------------------------------
+
+In th case of t.start() a new thread will be created which is the responsible for the 
+execution of run(),
+But In the case t.run() a new thread will not be created and run() will be executed just like a normal method call by
+main thread.
+
+Hence in the above program if we replace t.start() with t.run() then the output is 
+child THread ...10 times followed by main thread ..10 times.
+this total output produced by only main thread.
+
+case3: IMportance thread class start():
+_______________________________________
+
+Thread class start() is responsible to register the thread with thread scheduler and all other mandatory activites,hence without executing thread class start(), their is no chance
+of starting a new thread in java.
+Due to this thread class start()
+is consider as heart of multithreading.
+
+ex:
+-----
+start(){
+
+1.Register this thread with thread scheduler
+
+2.Perform all other mandatory activities.
+
+3.run()
+
+}
+
+
+case4: overloading of run()
+-----------------------------
+
+overloading of run() is always possible but thread class start method can invoke no-argument run(), the other overloaded methods we have call explicitly like a
+normal method call.
+
+ex:
+---
+class MyThread extends Thread{
+
+public void run(){
+
+sopln("no-arg run");
+
+}
+
+public void run(int i){
+
+sopln("int-arg run");
+
+}
+
+
+}
+
+}
+
+
+class Test{
+
+p s v m(String arg[]){
+
+MyThread t = new MyThread();
+t.start();
+
+}
+
+
+}
+
+o/p: no-arg run
+
+
+case:5 if we are not overriding run()
+--------------------------------------
+
+if we are not overriding run() then thread class run() will be executed, which as empty implementation,hence we wont get any output.
+
+ex:
+---
+
+class MyTHread extends Thread{
+
+}
+class Test{
+
+p s v m(String arg[]){
+
+MyThread t = new MyThread();
+t.start;
+
+}
+
+}
+note:
+-----
+
+It is highly recommended override run() otherwise dont go for run().
+
+
+case:6 overriding of start()
+----------------------------
+
+if we override start() then our start() will be executed just like a normal method call and new thread wont be created
+
+ex:
+----
+
+
+class MyTHread extends Thread{
+
+
+public void start(){
+
+
+sop("start method");
+
+
+}
+
+
+public void run(){
+
+
+sop("run method");
+
+
+}
+
+
+
+}
+class Test{
+
+p s v m(String arg[]){
+
+
+MyThread t = new MyThread();
+t.start()
+sop("main method");
+
+}
+
+}
+
+Note:
+-----
+
+it is not recommended to override start(), otherwise dont go for multithreading concept.
+
+case:7
+----
+
+class MyTHread extends Thread{
+
+
+public void start(){
+
+super.start();
+
+sop("start method");
+
+
+}
+
+
+public void run(){
+
+
+sop("run method");
+
+
+}
+
+
+
+}
+class Test{
+
+p s v m(String arg[]){
+
+
+MyThread t = new MyThread();
+t.start()
+sop("main method");
+
+}
+
+}
+
+
+case:8 Thread Life Cycle
+------------------------
+		new
+	    t.start()          		if t.s allocates processor		if run method completes
+MyTHread--------  ______> ready/runnable -------------------------->running----------------------------->waiting
+
+														||
+														stop
+
+
+t = new MyThread()
+
+
+
+case:9 
+------
+
+After starting a thread if we are trying to restart same thread then we will get runtime execption saying
+
+RE: IllegalThreadStateException
+
+Thread t = new Thread();
+
+t.start();
+;;;
+;;
+;;
+t.start(); 
+
+
+
+

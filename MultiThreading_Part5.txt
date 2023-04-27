@@ -1,0 +1,264 @@
+Thread execution prevention 
+****************************
+
+we can prevent a thread execution by using the following 
+methods:
+
+1)yield()
+
+2) join()
+
+3) sleep()
+
+
+yield() :
+=========
+
+yield() causes to pause current executing thread to give the chance for waiting threads of same priority.
+if there is no waiting thread or all waiting threads have low priority then same thread can continue its execution.
+
+if multiple threads are waiting with same priority  then which waiting thread will get the chance , we cant expect it depends on thread scheduler.
+
+------------------------------------------------------------------------------------------------------------------------------------
+The thread which is yielded , when it will get the chance once again it depends on thread scheduler and we cant expect exactly.
+
+
+
+prototype of yield()
+====================
+
+public static native void yield();
+                                                           Thread.yield()
+						|-------------------------------------------	
+ 						|					   |
+						^					   |
+						^					   |
+MyThread m = new MyThread() ---------------> Ready/RUnnable----------------------------->Running--------------------------------------->dead
+
+new/born state			t.start()                    if T.S allocates processor            if run() method execution completes
+
+
+example:
+--------
+
+class MyThread extends Thread {
+
+public void run(){
+
+
+for(int i=0;i<10;i++){
+
+
+s.o.p("child Thread");
+Thread.yield();
+
+}
+
+
+}
+
+}
+
+class ThreadDemo{
+
+public static void main(String args[]){
+
+MyThread t = new MyThread();
+t.start();
+
+for(int i=0;i<10;i++){
+
+s.o.p("main Thread");
+
+}
+
+
+}
+
+}
+
+
+In the above example if we are commenting line -- 1 --then both threads executed simultaneously and we cant expect which thread will complete first.
+
+if we are not line -- 1 -- then child thread always call yield() because of that , main() thread will get a chance more no of numbers times,and chance of completes is high.
+
+---
+note:
+-----
+
+some platforms wont prvide proper support for yield().
+
+
+
+join() :
+========
+
+if a thread wants to wait until completing some other thread then we should go for -- join() --
+
+for example:
+------------
+
+if a thread t1 wants to wait until complete t2 then t1 has to call t2.join().
+
+and if t1 executes t2.join() then immedately t1 will be entered into waiting state until t2 completes.
+
+once t2 compltes then t1 can continues its execution.
+
+
+example : 2
+--------  -
+
+venue fixing thread   wedding cards printing thread   wedding cards distribution
+   t1				t2 				 t3
+
+				t1.join() 			 t2.join()
+
+wedding cards printing thread(t2) has to wait until venue fixing thread(t1) completion, hence t2 has to call -- t1.join() ---
+
+wedding cards distribution thread(t3) has to wait until wedding cards printing thread(t2) completion, hence t3 has to call -- t2.join() --
+
+
+prototype of join ():
+=====================
+
+public final void join(); throws InterruptedException which is checked exception
+
+public final void join(long milliseconds);
+
+public final void join(long millisec,int nano seconds);
+
+
+note:
+=====
+
+every join() throws Interrupted Exception which is checked Execption.
+
+hence compusalory we should handle this exception either by using try/catch or by throws keyword.
+
+otheriwise we wil get compile time error.
+
+ex:
+----
+
+                                                           
+						|-------------------------------------------|----------------------waiting state(Blocked for joining)	
+ 						|	1.if t2 completes		   ||    t2.join()		
+						^ 2.if time expires                        ||     t2.join(1000)
+						^ 3.if waiting thread got interrupted	   ||      t3.join(1000,100)
+MyThread m = new MyThread() ---------------> Ready/RUnnable----------------------------->Running--------------------------------------->dead state
+
+new/born state			t.start()                    if T.S allocates processor            if run() method execution completes
+
+
+
+example:
+========
+
+
+case:1: waiting mainthread untill completing child thread.
+__________________________________________________________________
+
+class MyThread extends Thread {
+
+public void run(){
+
+
+for(int i=0;i<10;i++){
+
+
+s.o.p("sita Thread");
+
+try{
+
+
+Thread.sleep(2000);
+
+}catch(IE e){ }
+Thread.yield();
+
+}
+
+
+}
+
+}
+
+class ThreadJoinDemo{
+
+public static void main(String args[]) throws InterruptedExcepton{
+
+MyThread t = new MyThread();
+t.start();
+
+t.join(); --- [ 1 ]
+
+for(int i=0;i<10;i++){
+
+s.o.p("Ram Thread");
+
+}
+
+
+}
+
+}
+
+
+case:2 waiting mainthread untill completing child thread.for(10000) seconds
+__________________________________________________________________
+
+class MyThread extends Thread {
+
+public void run(){
+
+
+for(int i=0;i<10;i++){
+
+
+s.o.p("sita Thread");
+
+try{
+
+
+Thread.sleep(2000);
+
+}catch(IE e){ }
+Thread.yield();
+
+}
+
+
+}
+
+}
+
+class ThreadJoinDemo{
+
+public static void main(String args[]) throws InterruptedExcepton{
+
+MyThread t = new MyThread();
+t.start();
+
+t.join(10000); --- [ 1 ]
+
+for(int i=0;i<10;i++){
+
+s.o.p("Ram Thread");
+
+}
+
+
+}
+
+}
+
+note:
+------
+
+if we comment line -- 1 -- then both main and child will be executed simultaneously and we cant expect exact output
+
+if we are not commenting line -- 1 -- then main thread call join() on child thread object.
+hence main thread will wait until completing child  thread.
+
+in this case output is setha thread ..//followed by ramthread ..... 10 times
+
