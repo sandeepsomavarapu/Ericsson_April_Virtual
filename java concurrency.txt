@@ -1,0 +1,151 @@
+Java Concurrency :
+-----------------
+
+Thread Pool:
+------------
+group of threads created by executor frame work..thread pool
+
+java provides 4 kinds of thread pools
+	1)Fixed Thread pool  
+	2)Cached Thread pool
+	3)Scheduled Thread pool
+	4)SingleThreaded Executor
+	
+	
+		1)Fixed Thread pool
+		--------------------  10
+		where we have fixed number of threads(we are going to give some number of threads).
+		
+		*it will create threads and the each thread will do two tasks pic the the task from no of tasks and execute..
+		
+		all the tasks will be blocking queue
+		
+1000
+
+10  threads
+
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ThreadPool {
+public static void main(String[] args) {
+	//create the pool
+	ExecutorService service=	Executors.newFixedThreadPool(10);
+	//submit tasks for execution
+	for(int i=0;i<100;i++)
+	{service.execute(new Task());}
+	System.out.println("Thread name :"+Thread.currentThread().getName());
+}
+}
+class Task implements Runnable
+{
+	public void run() {
+		System.out.println("Thread name :"+Thread.currentThread().getName());
+	}
+	}
+
+	2)Cached Thread pool:
+	---------------------
+	*for this type pool we no need to pass parameter like no of threads.
+	* it will not use any queue's to take the tasks
+	
+	
+	10
+	
+	1 2 3 4 5
+	
+	thread pool can hold one task and it will search any thread is free then it allocates otherwise
+	it will create new thread and execute... 
+	if the threads are idle for more than 60 s it will kill the threds
+	package com.Threads;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ThreadPool1 {
+public static void main(String[] args) {
+	//create the pool
+	ExecutorService service=	Executors.newCachedThreadPool();
+	//submit tasks for execution
+	for(int i=0;i<100;i++)
+	{service.execute(new Task1());}
+	System.out.println("Thread name :"+Thread.currentThread().getName());
+}
+}
+class Task1 implements Runnable
+{
+	public void run() {
+		System.out.println("Thread name :"+Thread.currentThread().getName());
+	}
+	}
+
+	3)Scheduled Thread pool:
+	-------------------------
+	*EX:for secuirty checks and login checks after 10 seconds .
+	
+	Service.schedule();//certain delay
+	sevice.scheduleAtFixedRate(10);//if we want perform some checks for every 10 seconds....
+	
+		DelayQueue//it will use internally and the tasks not in sequential..based on scheduled time
+		
+	service.scheduleAtFixedDelay(10);it will checks  for 25 seconds if our  taks need 15 seconds
+	
+	
+import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class ThreadPool2 {
+	public static void main(String[] args) {
+		// for scheduling tasks
+		ScheduledExecutorService service = Executors.newScheduledThreadPool(10);
+		// task to run after 10 second delay
+		// service.schedule(new Task2(),10,TimeUnit.SECONDS);
+
+		// task to run repeatedly for every 10 seconds
+		//service.scheduleAtFixedRate(new Task2(), 15, 10, TimeUnit.SECONDS);
+		// task to run repeatedly for every 10 seconds after previous task completes
+		service.scheduleWithFixedDelay(new Task2(),15,10,TimeUnit.SECONDS);
+
+	}
+}
+
+class Task2 implements Runnable {
+	public void run() {
+
+		System.out.println("Thread name :" + Thread.currentThread().getName() + " " + new Date());
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+	4)SingleThreaded Executor
+	----------------------------
+	
+	* its is same as fixed thread pool executor but in this case the size of pool is 1.
+	
+	Ex:
+	task1 task2 task3
+	 
+	 if our requirement is to run sequentially we can go for once task1 then task2 ....
+	 
+	
+	
+	Callable:
+	=========
+	its same as runnable we have to call method in callable interface and 
+	
+	Future is a place holder the value will get after some time or in future
+	
+	
+	
+	
+	
+	
+	
