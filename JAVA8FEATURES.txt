@@ -1,0 +1,455 @@
+JAVA 8 NEW  FEATURES:
+===================== 			 1995 jdk1.0  
+
+* FUNCTIONAL INTERFACE		SAM
+
+* LAMDA EXPRESSIONS   
+
+* DEFAULT METHODS AND STATIC METHODS IN INTERFACE
+
+* PREDEFINED FUNCTIONAL INTERFACES    //Comparable,Runnable,Comparator,Callable,Cloneable....
+	PREDICATE		
+	FUNCTION
+	CONSUMER	
+	SUPPLIER ...ETC				Functional Programming:* 
+DOUBLE COLON OPERATOR(::)
+	USED FOR METHOD REFERENCE,CONSTRUCTOR REFERENCE
+
+* STREAMS 
+
+* DATE AND TIME API						Date date=new Date()
+
+* OPTIONAL CLASS
+
+
+
+lamda expression--->anonymous function-->w/o modifier,retuntype,methodname,optional parameter DT,...
+
+
+->
+
+
+public  int addition(int a,int b)
+{
+return a+b;
+}
+ 
+   (a, b)->a+b;
+
+
+
+
+LAMDA EXPRESSIONS:
+=================
+
+NEED OF LAMDA EXPRESSIONS?
+
+with out lamda:
+---------------
+
+public class Test {
+	public  int squareRoot(int a) {
+		return a * a;
+	}
+	public static void main(String args[]) {
+		System.out.println("welcme to lamda expressions : " + Test.squareRoot(5));
+		System.out.println("welcme to lamda expressions : " + Test.squareRoot(10));
+	}
+}
+
+
+
+a->a*a
+
+
+
+with lamda:
+-----------
+squareRoot of a given number?
+
+public class Test {
+	public static void main(String args[]) {
+	Function<Integer,Integer> f=i->i*i;
+		System.out.println("welcme to lamda expressions : " + f.apply(5));
+		System.out.println("welcme to lamda expressions : " + f.apply(10));
+	}
+}
+
+check given number is even or not?
+
+//import java.util.function.*;
+import java.util.function.Predicate;
+
+public class Test {
+	public static void main(String args[]) {
+	Predicate<Integer> p=i->i%2==0;
+	System.out.println(p.test(4));
+	System.out.println(p.test(7));
+	}
+}
+
+
+
+LAMDA EXPRESSIONS INTRODUCTION:
+==============================
+
+* THE FIRST PROGRAMMING LANGUAGE WHICH USED LAMDA EXPRESSIONS IS "LISP".
+		
+			* PYTHON,LISP,C,C++RUBY,SCALA....
+			
+			* @LAST IN JAVA
+			
+			
+			
+
+			 * THE MAIN OBJECTIVE OF LAMDA EXPRESSIONS IS TO BRING FUNCTIONAL PROGRAMMING INTO JAVA .
+
+		 LAMDA EXPRESSION IS A ANONYMOUS FUNCTION.(NAME LESS,WITH OUT RETURN TYPE,WITH OUT MODIFIERS) 
+				
+				
+	HOW TO WRITE?
+
+		public void m1()
+		{
+		sop("welcome");
+		}
+		
+		(NAME LESS,WITH OUT RETURN TYPE,WITH OUT MODIFIERS)
+				
+				()->
+				{
+				sop("welcome");
+				}
+				
+		if implementation is one line curly brases are optional
+				
+				()->sop("welcome");
+				
+				
+				
+	Ex:
+	---
+	
+	public void m1(int a,int b)
+	{
+	sop(a+b);
+	}
+	
+	
+	
+	
+				
+		with lamda
+
+	(int a,int b)->sop(a+b);
+
+	(a,b)->sop(a+b);//compiler can guess the type of variables automatically.
+	
+	
+	
+	Ex1:
+	----
+	public int square(int a)
+	{
+	return a*a;
+	}
+	
+
+	
+	with lamda
+	----------
+	(int a)->{return a*a;}
+	(or)
+		//we can avoid return keyword also.
+		
+	(int a)->a*a;	//valid, but with out curly brases we can't use return keyword
+		(a)->a*a;	//valid	 if compiler guess the type automatically,we can remove the type also.
+		a->a*a;   //if only one parameter is available brases are optional		
+				
+	
+	Ex2:
+	----	A
+			public int m1(String  s)
+			{
+			return s.length();
+			}		
+			
+			A a=new A();a.m1()
+			with lamda
+			----------
+				(s)-> s.length();
+				
+				s->s.length();
+				
+				
+					()->sop();
+				
+	Functional Interface:SAM+deafault+static
+	--------------------
+	
+	* Runnable-->run()
+	* Callable-->call()
+	* Comparable-->compareTo()
+	* ActionListener-->actionPerformed()
+				
+	SAM(Single Abstract Method)-->Functional Interface
+	
+	
+	public void m1()
+	{
+	sop("hello");
+	}
+
+()->sop("hello");
+
+
+** after creating lamda expressions we need to call(invokeing method) by using functional interface
+
+** we can have any number of default and static methods in functional interface the restriction 
+only for abstract method....
+
+@FunctionalInterface annotation :
+
+its not mandatory..if we use this annotation before interface then it will restrict  the user to take 
+
+extra methods with in the functional interface.
+
+
+@FunctionalInterface
+interface A
+{
+public void m1();
+}
+@FunctionalInterface
+interface B extends A
+{
+
+}
+//valid
+
+
+//with lamda
+
+interface A
+{
+void add();
+}
+class Test implements A
+{
+void add()
+{
+int a=1,b=30;
+sop(a+b);
+}
+
+}
+class TestMain
+{
+p s v  main()
+{
+Test t=new  Test();
+t.add();
+}
+}
+
+
+
+//with lamda
+-------------
+interface A
+{
+void add();
+}
+
+public class TestMain
+{
+public static void main(String args[])
+{
+A a =()->{System.out.println("welcome to java");};
+a.add();
+} 
+
+java.util.function			P,C,S,F
+ 
+in this package we have different predefined  functional interfaces for performing common
+requirements... 
+
+psvmain()
+{
+Predicate<Integer> p1=i->i%2==0;
+sop(p1.test(10));//true
+sop(p1.test(121));//false
+
+Emp e=new Emp();
+e.id=123;
+e.salary=12300;
+e.isHavingGF=true;
+Predicate<Integer> p1=e->e.salary>10000 && e.isHavingGF==true;
+sop(p1.test(e));//true
+sop(p1.test(e1));//false
+
+}
+
+flow of data/objects				
+
+Default method need:
+===================
+with out effecting implementation classes  if we want to add new method to the interface==>Default methods.
+
+
+
+
+STREAMS in 8:
+============
+
+collection is like group of elements .....
+
+
+To process group of elements in collections...we need to go for streams.
+
+HOW to create stream object...
+
+
+Stream c=collection.stream();//stream method present in collection interface (default)...java.util.stream
+
+
+1)filter:if we dont want all the elements like only even numbers,only student objects whose marks more than 80...etc
+
+filter method will take boolean value function....
+
+2)map:function as argument
+
+
+
+
+
+to collect values from collection -->collect()
+to count number elements present in collection -->count
+to sort elements present in collection--->sorted()dnso--->sorted(c)--<cso
+to find min value based on comparator--->min(comparator c)
+to find max value based on comparator--->max(comparator c)
+to iterate all the elements in collections-->forEach(lamdaex)
+
+
+
+
+
+
+
+
+arraylist-->with diff elements
+to get even numbers
+for(Integer i1:al)(up-to 1.7)
+{
+if(i1%2==0)
+{
+al1.add(i1);
+}
+}
+sop(al1);
+
+
+		ArrayList<Integer> al = new ArrayList<Integer>();//10,16,25-->(cc*3/2)+1
+		al.add(10);
+		al.add(40);
+		al.add(30);
+		al.add(15);
+		al.add(5);
+		System.out.println("gg" + al);//10,40,30,15,5 -->Iterator
+	Iterator itr=	al.iterator()
+	ArrayList al1=new ArrayList();
+while(itr.hasNext())
+{
+	int num=itr.next();
+	if(num%2==0)
+	{
+	al1.add(num)
+	}
+}
+syso(al1)
+
+intermediate operations / terminal operations
+			List<Integer> result=al.stream().filter(i->i%2==0).collect(Collectors.toList())
+
+
+using streams (1.8)
+----------------------
+List<Integer> l1=l.stream().filter(i->i%2==0).collect(Collectors.toList());
+sop(l1)
+
+******************************************************************************
+
+To double each value in collection
+
+for(Integer i1:al)(up-to 1.7)
+{
+al1.add(i1*2);
+}
+sop(al1);
+
+using streams (1.8)
+----------------------
+List<Integer> l1=l.stream().map(i->i*2).collect(Collectors.toList());
+sop(l1)
+
+list of marks we have to get only students who passed?
+
+List<Integer> l1=l.stream().filter(i->i>=35);
+sop(l1)
+
+*****************************************************
+count example:
+---------------
+Arraylist<int> al=new ArrayList<int>();//wrapper
+
+al.add(40);
+al.add(70);
+al.add(30);
+al.add(90);
+al.add(80);
+al.add(50);
+sop(al);
+
+int failedstudents=al.stream().filter(al->i<35).count();
+sop(failedstudents);
+
+to sort dnso:
+=============
+list sortelements=al.stream().sorted().collect(Colectors.toList());
+sop(sortelements);
+
+for cso:
+==========
+list sortelements=al.stream().sorted((i1,i2)->(i1<i2)?1:(i1>i2)?-1:0)).collect(Colectors.toList());
+sop(sortelements);
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

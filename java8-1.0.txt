@@ -1,0 +1,353 @@
+Predicate<T>
+============
+We can use Predicate<T> to implement some conditional checks. However, from it’s method signature 
+ boolean test(T t) it is clear that it takes an input parameter and returns a Boolean result.
+ When you have this type of requirement to write a method.
+ 
+Q)write a program to check if a number is a single digit number or not using Lambda expression?
+
+Predicate<Integer> p = (i) -> (i > -10) && (i < 10);
+System.out.println(p.test(9));
+
+Q)write a program to check if a number is a single digit number or not using Lambda expression?
+Q)write a program to supply 4 digit random OTPs using Lambda expression
+Q)Write a program to print names which are ending "esh" from"suresh","mahesh","sandeep","ramakrishna","somesh","rajesh".
+	using Lambda expression	
+ List<String> emps =
+            Arrays.asList("suresh","mahesh","sandeep","ramakrishna","somesh","rajesh");
+  
+        Predicate<String> p = (s)->s.endsWith("esh");
+        for (String st:emps)
+        {   
+            if (p.test(st))
+                System.out.println(st);
+        }
+		
+		
+Function<T, R>:
+===============
+Function<T, R> is used to perform some operation & returns some result. 
+Unlike Predicate<T> which returns only boolean, Function<T, R> can return any type of value. 
+Therefore, we can also say that Predicate is a special type of Function which returns only Boolean values.
+
+interface Function<T,R> { 
+    R apply(T t);
+}
+
+Consumer<T>:
+=============
+Consumer<T> is used when we have to provide some input parameter, perform certain operation, 
+but don’t need to return anything. Moreover, we can use Consumer to consume object and perform certain operation.
+
+interface Consumer<T> {
+   void accept(T t);
+}
+
+=> T denotes the input parameter type.
+
+ we have to write a program to find length of a given String using Lambda expression. 
+ Since it’s taking input, performing some operation & returning result, we will implement Consumer as below:
+
+Consumer<String> c = s -> System.out.println(s); 
+c.accept("I consume data but don't return anything"); 
+
+Supplier<R>:
+============
+
+Supplier<R> doesn’t take any input and it always returns some object. However, we use it when we need to get some value based on some operation like supply Random numbers, supply Random OTPs, supply Random Passwords etc. For example, below code denotes it :
+
+interface Supplier<R>{
+    R get();
+}
+
+
+suppose we have to write a program to supply 4 digit random OTPs using Lambda expression. 
+Since it will return values without taking any input parameter.
+Supplier<String> otps = () -> {
+     String otp = "";
+     for (int i = 1; i <= 4; i++) {
+        otp = otp + (int) (Math.random() * 10);
+     }
+   return otp;
+};
+System.out.println(otps.get());
+System.out.println(otps.get());
+System.out.println(otps.get());
+
+Ex2:
+Supplier<Integer> supplier = () -> new Random().nextInt(100);
+    System.out.println(supplier.get());
+
+BiPredicate:
+============
+
+BiPredicate<Integer,Integer> bp = (i,j)->(i+j) %2==0; 
+System.out.println(bp.test(24,34)); 
+
+BiFunction:
+===========
+
+BiFunction<Integer,Integer,Integer> bf = (i,j)->i+j; 
+System.out.println(bf.apply(24,4)); 
+
+BiConsumer:
+============
+
+BiConsumer<String,String> bc = (s1, s2)->System.out.println(s1+s2); 
+bc.accept("Bi","Consumer"); 
+
+
+	al.stream()
+	al.parallelStream()
+
+
+
+Stream api
+===========
+*A Stream in Java can be defined as a sequence of elements from a source. 
+The source of elements here refers to a Collection or Array that provides data to the Stream.
+
+
+* Java streams are designed in such a way that most 
+of the stream operations (called intermediate operations) return a Stream
+
+* Java streams also support the aggregate or terminal operations on the elements. 
+The aggregate operations are operations that allow us to express common manipulations on stream elements 
+quickly and clearly.
+ for example, finding the max or min element, finding the first element matching giving criteria, and so on.
+
+
+** All of us have watched online videos on Youtube. When we start watching a video,
+ a small portion of the video file is first loaded into our computer and starts playing. 
+we don’t need to download the complete video before we start watching it. This is called video streaming.
+
+
+ ** At a very high level, we can think of that small portions of the 
+	video file as a stream and the whole video as a Collection.
+
+
+
+* The idea is that a user will extract only the values they require from a Stream.
+
+
+* In Java, java.util.Stream interface represents a stream on which one or more operations can be performed. 
+Stream operations are either intermediate or terminal.
+
+The terminal operations return a result of a certain type and intermediate operations return the stream itself 
+so we can chain multiple methods in a row to perform the operation in multiple steps.
+
+
+* Streams are created on a source, e.g. a java.util.Collection like List or Set. 
+The Map is not supported directly, we can create stream of map keys, values or entries.
+
+
+* Stream operations can either be executed sequentially or parallel. 
+when performed parallelly, it is called a parallel stream.
+
+* Stream does not store elements.
+
+* Operations performed on a stream does not modify it's source.
+
+* Stream is lazy and evaluates code only when required.
+
+* The elements of a stream are only visited once during the life of a stream. 
+Like an Iterator, a new stream must be generated to revisit the same elements of the source.
+
+Based on the above points, a stream is :
+
+Not a data structure
+Designed for lambdas
+Do not support indexed access
+Can easily be aggregated as arrays or lists
+Lazy access supported
+Parallelizable
+
+* Java 8 offers the possibility to create streams out of three primitive types: int, long and double.
+ As Stream<T> is a generic interface, and there is no way to use primitives as a
+ type parameter with generics, three new special interfaces were created: IntStream, LongStream, DoubleStream
+ 
+Creating Streams:
+=================
+
+
+
+Finding certain strings without using Stream:
+=============================================
+
+import java.util.ArrayList;
+import java.util.List;
+public class Example{ 
+   public static void main(String[] args) {    
+	List<String> names = new ArrayList<String>();
+	names.add("Ajeet");
+	names.add("Negan");
+	names.add("Aditya");
+	names.add("Steve");
+	int count = 0;
+	for (String str : names) {
+	   if (str.length() < 6) 
+		count++; 
+	}
+        System.out.println("There are "+count+" strings with length less than 6");
+   }  
+}
+
+
+Finding certain strings with Stream:
+=============================================
+import java.util.ArrayList;
+import java.util.List;
+public class Example{ 
+   public static void main(String[] args) {    
+	List<String> names = new ArrayList<String>();
+	names.add("Ajeet");
+	names.add("Negan");
+	names.add("Aditya");
+	names.add("Steve");
+		
+	//Using Stream and Lambda expression
+	long count = names.parallelStream().filter(str->str.length()<6).count();
+	System.out.println("There are "+count+" strings with length less than 6");
+
+   }  
+}
+
+What is the difference between these codes?
+The output of both the examples are same, however there is a major difference between these examples 
+if you consider the performance of the code.
+In the first example, we are iterating the whole list to find the strings with length less than 6. 
+There is no parallelism in this code.
+
+In the second example, the parallelStream() method returns a stream of all the names, the filter() method 
+returns another stream of names with length less than 6, the count() method reduces this stream to the result. 
+All these operations are happening parallelly which means we are able to parallelize the code with the help 
+of streams. 
+Parallel execution of operations using stream is faster than sequential execution without using streams.
+
+
+
+
+How to work with Stream in Java
+As we have seen in the above example, the working of stream can be explained in three stages:
+1. Create a stream    .stream()/parallelStream()
+
+2. Perform intermediate operations on the initial stream to transform it into another stream and so on on 
+further intermediate operations. In the above example, the filter() operation is intermediate operation, 
+there can be more than one intermediate operations.
+
+3. Perform terminal operation on the final stream to get the result. In the above example, 
+the count() operation is terminal operation.
+
+Java Stream Features
+1. Stream does not store the elements. it simply performs the aggregate operations(such as filter() and count() that we have seen in the above example) to get the desired stream of data.
+
+2. The aggregate operations that we perform on the collection, array or any other data source do not change 
+the data of the source, they simply return a new stream. For example the code 
+we have seen above is filtering the strings with length less than 6 using the stream operations but it 
+didn’t change the elements of the list.
+
+3. All the stream operations are lazy in nature which means they are not executed until they are needed. 
+For example, if we want to display only the first 2 elements of a list using stream, the stream operation
+ would stop at the end of second iteration after displaying the second element of list.
+ 
+W/O Stream:
+===========
+
+import java.util.*;  
+class Product{  
+    int id;  
+    String name;  
+    float price;  
+    public Product(int id, String name, float price) {  
+        this.id = id;  
+        this.name = name;  
+        this.price = price;  
+    }  
+}  
+public class JavaStreamExample {  
+    public static void main(String[] args) {  
+        List<Product> productsList = new ArrayList<Product>();  
+        //Adding Products  
+        productsList.add(new Product(1,"HP Laptop",25000f));  
+        productsList.add(new Product(2,"Dell Laptop",30000f));  
+        productsList.add(new Product(3,"Lenevo Laptop",28000f));  
+        productsList.add(new Product(4,"Sony Laptop",28000f));  
+        productsList.add(new Product(5,"Apple Laptop",90000f));  
+        List<Float> productPriceList = new ArrayList<Float>();  
+        for(Product product: productsList){  
+              
+            // filtering data of list  
+            if(product.price<30000){  
+                productPriceList.add(product.price);    // adding price to a productPriceList  
+            }  
+        }  
+        System.out.println(productPriceList);   // displaying data  
+		
+		  List<Float> productPriceList2 =productsList.stream()  
+                                     .filter(p -> p.price > 30000)// filtering data  
+                                     .map(p->p.price)        // fetching price  
+                                     .collect(Collectors.toList()); // collecting as list  
+        System.out.println(productPriceList2);  
+		
+		 // This is more compact approach for filtering data  
+        productsList.stream()  
+                             .filter(product -> product.price == 30000)  
+                             .forEach(product -> System.out.println(product.name));  
+		// Using Collectors's method to sum the prices.  
+		double totalPrice3 = productsList.stream()  
+                        .collect(Collectors.summingDouble(product->product.price));  
+        System.out.println(totalPrice3);
+		    // max() method to get max Product price     
+        Product productA = productsList.stream().max((product1, product2)->product1.price > product2.price ? 1: -1).get();    
+        System.out.println(productA.price);    
+        // min() method to get min Product price    
+        Product productB = productsList.stream().min((product1, product2)->product1.price > product2.price ? 1: -1).get();    
+        System.out.println(productB.price); 
+		// count number of products based on the filter  
+        long count = productsList.stream()  
+                    .filter(product->product.price<30000)  
+                    .count();  
+        System.out.println(count);  	
+		// Converting product List into Set  
+        Set<Float> productPriceList =   
+            productsList.stream()  
+            .filter(product->product.price < 30000)   // filter product on the base of price  
+            .map(product->product.price)  
+            .collect(Collectors.toSet());   // collect it as Set(remove duplicate elements)  
+        System.out.println(productPriceList);  
+
+ // Converting Product List into a Map  
+        Map<Integer,String> productPriceMap =   
+            productsList.stream()  
+                        .collect(Collectors.toMap(p->p.id, p->p.name));  
+              
+        System.out.println(productPriceMap);  		
+    }  
+}  
+
+
+References:
+===========
+https://blog.knoldus.com/rules-while-working-with-stream-in-java-8/
+
+
+
+https://blog.knoldus.com/java-8-stream-need-with-examples-and-limitations/
+
+
+
+https://www.journaldev.com/2774/java-8-stream
+
+
+
+
+
+
+
+
+
+
+
+
+
+
